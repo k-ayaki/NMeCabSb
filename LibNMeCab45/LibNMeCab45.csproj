@@ -137,6 +137,7 @@
     <Content Include="dic\ipadic\feature.def" />
     <Content Include="dic\ipadic\left-id.def" />
     <Content Include="dic\ipadic\matrix.def" />
+    <Content Include="dic\ipadic\mecab-dict-index.exe" />
     <Content Include="dic\ipadic\pos-id.def" />
     <Content Include="dic\ipadic\rewrite.def" />
     <Content Include="dic\ipadic\right-id.def" />
