@@ -83,6 +83,7 @@
     <None Include="dic\ipadic\Adnominal.csv" />
     <None Include="dic\ipadic\Adverb.csv" />
     <None Include="dic\ipadic\Auxil.csv" />
+    <None Include="dic\ipadic\build.bat" />
     <None Include="dic\ipadic\Conjunction.csv" />
     <None Include="dic\ipadic\Filler.csv" />
     <None Include="dic\ipadic\Interjection.csv" />
