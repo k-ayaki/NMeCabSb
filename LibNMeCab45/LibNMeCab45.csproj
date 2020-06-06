@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{00763D48-823C-4260-88AF-0169561F6486}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NMeCab</RootNamespace>
+    <AssemblyName>LibNMeCab</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;EXT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;EXT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\BitUtils.cs" />
+    <Compile Include="Core\CharInfo.cs" />
+    <Compile Include="Core\CharProperty.cs" />
+    <Compile Include="Core\Connector.cs" />
+    <Compile Include="Core\DoubleArray.cs" />
+    <Compile Include="Core\IniParser.cs" />
+    <Compile Include="Core\MeCabDictionary.cs" />
+    <Compile Include="Core\MeCabPath.cs" />
+    <Compile Include="Core\NBestGenerator.cs" />
+    <Compile Include="Core\PriorityQueue.cs" />
+    <Compile Include="Core\StrUtils.cs" />
+    <Compile Include="Core\Token.cs" />
+    <Compile Include="Core\Tokenizer.cs" />
+    <Compile Include="Core\Utils.cs" />
+    <Compile Include="Core\Viterbi.cs" />
+    <Compile Include="Core\Writer.cs" />
+    <Compile Include="Extension\FeatureExtension.cs" />
+    <Compile Include="Extension\IpaDic\IpaDicFeatureExtension.cs" />
+    <Compile Include="Extension\UniDic\UniDicFeatureExtension.cs" />
+    <Compile Include="MeCabDictionaryType.cs" />
+    <Compile Include="MeCabException.cs" />
+    <Compile Include="MeCabFileFormatException.cs" />
+    <Compile Include="MeCabInvalidFileException.cs" />
+    <Compile Include="MeCabLatticeLevel.cs" />
+    <Compile Include="MeCabNode.cs" />
+    <Compile Include="MeCabNodeStat.cs" />
+    <Compile Include="MeCabParam.cs" />
+    <Compile Include="MeCabTagger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dic\ipadic\Adj.csv" />
+    <None Include="dic\ipadic\Adnominal.csv" />
+    <None Include="dic\ipadic\Adverb.csv" />
+    <None Include="dic\ipadic\Auxil.csv" />
+    <None Include="dic\ipadic\Conjunction.csv" />
+    <None Include="dic\ipadic\Filler.csv" />
+    <None Include="dic\ipadic\Interjection.csv" />
+    <None Include="dic\ipadic\lint.csv" />
+    <None Include="dic\ipadic\Noun.adjv.csv" />
+    <None Include="dic\ipadic\Noun.adverbal.csv" />
+    <None Include="dic\ipadic\Noun.csv" />
+    <None Include="dic\ipadic\Noun.demonst.csv" />
+    <None Include="dic\ipadic\Noun.nai.csv" />
+    <None Include="dic\ipadic\Noun.name.csv" />
+    <None Include="dic\ipadic\Noun.number.csv" />
+    <None Include="dic\ipadic\Noun.org.csv" />
+    <None Include="dic\ipadic\Noun.others.csv" />
+    <None Include="dic\ipadic\Noun.place.csv" />
+    <None Include="dic\ipadic\Noun.proper.csv" />
+    <None Include="dic\ipadic\Noun.verbal.csv" />
+    <None Include="dic\ipadic\Others.csv" />
+    <None Include="dic\ipadic\Postp-col.csv" />
+    <None Include="dic\ipadic\Postp.csv" />
+    <None Include="dic\ipadic\Prefix.csv" />
+    <None Include="dic\ipadic\Suffix.csv" />
+    <None Include="dic\ipadic\Symbol.csv" />
+    <None Include="dic\ipadic\Verb.csv" />
+    <None Include="Resources\TextFile11.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="dic\ipadic\char.bin" />
+    <None Include="dic\ipadic\dicrc" />
+    <None Include="dic\ipadic\matrix.bin" />
+    <None Include="dic\ipadic\sys.dic" />
+    <None Include="dic\ipadic\unk.dic" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dic\ipadic\char.def" />
+    <Content Include="dic\ipadic\feature.def" />
+    <Content Include="dic\ipadic\left-id.def" />
+    <Content Include="dic\ipadic\matrix.def" />
+    <Content Include="dic\ipadic\pos-id.def" />
+    <Content Include="dic\ipadic\rewrite.def" />
+    <Content Include="dic\ipadic\right-id.def" />
+    <Content Include="dic\ipadic\unk.def" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>dir</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>cd ..\..\dic\ipadic
+call build
+</PreBuildEvent>
+  </PropertyGroup>
+</Project>
