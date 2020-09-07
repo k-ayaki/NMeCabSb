@@ -149,8 +149,10 @@
     <PostBuildEvent>dir</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>cd ..\..\dic\ipadic
-call build
+    <PreBuildEvent>dir
+cd ..\..\dic\ipadic
+dir
+call build.bat
 </PreBuildEvent>
   </PropertyGroup>
 </Project>
