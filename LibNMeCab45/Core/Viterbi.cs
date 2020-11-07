@@ -81,7 +81,6 @@ namespace NMeCab.Core
         public void Open(MeCabParam param)
         {
             tokenizer.Open(param);
-            //connector.Open(param);
             connector.Open();
 
             this.costFactor = param.CostFactor;

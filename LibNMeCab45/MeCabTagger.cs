@@ -174,7 +174,6 @@ namespace NMeCab
             this.ThrowIfDisposed();
             string orgStr = new string(str, 0, len);
             string zenStr = Strings.StrConv(orgStr, VbStrConv.Wide, 0x411);
-            zenStr = Strings.StrConv(zenStr, VbStrConv.Uppercase, 0x411);
             MeCabNode nodeOrg;
             fixed (char *pStr = zenStr)
                 nodeOrg = this.viterbi.Analyze(pStr, len);
@@ -186,7 +185,7 @@ namespace NMeCab
                 if (node.Feature != "BOS/EOS,*,*,*,*,*,*,*,*")
                 {
                     index = zenStr.IndexOf(node.Surface);
-                    if(0 <= index)
+                    if (0 <= index)
                     {
                         node.Surface = orgStr.Substring(index, node.Surface.Length);
                         zenStr = zenStr.Substring(index + node.Surface.Length);
