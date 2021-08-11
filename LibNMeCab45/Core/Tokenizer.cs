@@ -43,7 +43,17 @@ namespace NMeCab.Core
 
         public void Open(MeCabParam param)
         {
-            this.dic = new MeCabDictionary[param.UserDic.Length + 1];
+            System.Reflection.Assembly executionAsm = System.Reflection.Assembly.GetExecutingAssembly();
+            string prefix2 = Path.GetDirectoryName(new Uri(executionAsm.CodeBase).LocalPath);
+            string dicPath = Path.Combine(prefix2, @"user.dic");
+            if (File.Exists(dicPath))
+            {
+                this.dic = new MeCabDictionary[2];
+            } else
+            {
+                this.dic = new MeCabDictionary[1];
+            }
+            string prefix = param.DicDir;
 
             this.property.Open();
 
@@ -57,18 +67,18 @@ namespace NMeCab.Core
             if (sysDic.Type != DictionaryType.Sys)
                 throw new MeCabInvalidFileException("not a system dictionary", "sys.resource");
             this.dic[0] = sysDic;
-            /*
-            for (int i = 0; i < param.UserDic.Length; i++)
+
+            if (File.Exists(dicPath))
             {
                 MeCabDictionary d = new MeCabDictionary();
-                d.Open(Path.Combine(prefix, param.UserDic[i]));
+                d.Open(dicPath);
                 if (d.Type != DictionaryType.Usr)
                     throw new MeCabInvalidFileException("not a user dictionary", d.FileName);
                 if (!sysDic.IsCompatible(d))
                     throw new MeCabInvalidFileException("incompatible dictionary", d.FileName);
-                this.dic[i + 1] = d;
+                this.dic[1] = d;
             }
-            */
+
             this.unkTokens = new Token[this.property.Size][];
             for (int i = 0; i < this.unkTokens.Length; i++)
             {

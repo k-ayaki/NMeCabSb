@@ -63,7 +63,15 @@ namespace NMeCab.Core
         #endregion
 
         #region Open
+        public void Open(BinaryReader reader, uint size)
+        {
+            this.array = new Unit[size / UnitSize];
 
+            for (int i = 0; i < array.Length; i++)
+            {
+                this.array[i] = new Unit(reader.ReadInt32(), reader.ReadUInt32());
+            }
+        }
         public void Open(byte[] contents, ref int offset, uint size)
         {
             this.array = new Unit[size / UnitSize];

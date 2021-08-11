@@ -107,7 +107,6 @@
     <None Include="dic\ipadic\Suffix.csv" />
     <None Include="dic\ipadic\Symbol.csv" />
     <None Include="dic\ipadic\Verb.csv" />
-    <None Include="Resources\TextFile11.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -129,9 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Image1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="dic\ipadic\char.def" />

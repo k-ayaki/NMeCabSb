@@ -46,7 +46,18 @@ namespace NMeCab.Core
         #endregion
 
         #region Method
-
+        public static Token Create(BinaryReader reader)
+        {
+            return new Token()
+            {
+                LcAttr = reader.ReadUInt16(),
+                RcAttr = reader.ReadUInt16(),
+                PosId = reader.ReadUInt16(),
+                WCost = reader.ReadInt16(),
+                Feature = reader.ReadUInt32(),
+                Compound = reader.ReadUInt32()
+            };
+        }
         public static Token Create(byte[] contents, int offset)
         {
             return new Token()

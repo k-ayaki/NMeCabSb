@@ -14,7 +14,7 @@ namespace NMeCab
 {
     public class MeCabParam
     {
-        //public string DicDir { get; set; }
+        public string DicDir { get; set; }
 
         public string[] UserDic { get; set; }
 

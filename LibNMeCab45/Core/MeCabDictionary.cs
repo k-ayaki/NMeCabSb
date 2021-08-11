@@ -61,6 +61,50 @@ namespace NMeCab.Core
         #endregion
 
         #region Open
+        public void Open(string filePath)
+        {
+            this.FileName = filePath;
+
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (BinaryReader reader = new BinaryReader(fileStream))
+            {
+                this.Open(reader);
+            }
+        }
+        public unsafe void Open(BinaryReader reader)
+        {
+            uint magic = reader.ReadUInt32();
+            //CanSeekの時のみストリーム長のチェック
+            if (reader.BaseStream.CanSeek && reader.BaseStream.Length != (magic ^ DictionaryMagicID))
+                throw new MeCabInvalidFileException("dictionary file is broken", this.FileName);
+
+            this.Version = reader.ReadUInt32();
+            if (this.Version != DicVersion)
+                throw new MeCabInvalidFileException("incompatible version", this.FileName);
+
+            this.Type = (DictionaryType)reader.ReadUInt32();
+            this.LexSize = reader.ReadUInt32();
+            this.LSize = reader.ReadUInt32();
+            this.RSize = reader.ReadUInt32();
+            uint dSize = reader.ReadUInt32();
+            uint tSize = reader.ReadUInt32();
+            uint fSize = reader.ReadUInt32();
+            reader.ReadUInt32(); //dummy
+
+            string charSet = StrUtils.GetString(reader.ReadBytes(32), Encoding.ASCII);
+            this.encoding = StrUtils.GetEncoding(charSet);
+
+            this.da.Open(reader, dSize);
+
+            this.tokens = new Token[tSize / sizeof(Token)];
+            for (int i = 0; i < this.tokens.Length; i++)
+                this.tokens[i] = Token.Create(reader);
+
+            this.features = reader.ReadBytes((int)fSize);
+
+            if (reader.BaseStream.ReadByte() != -1)
+                throw new MeCabInvalidFileException("dictionary file is broken", this.FileName);
+        }
 
         public void Open(byte[] contents)
         {
