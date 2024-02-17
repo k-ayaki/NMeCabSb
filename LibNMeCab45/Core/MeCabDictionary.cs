@@ -64,11 +64,13 @@ namespace NMeCab.Core
         public void Open(string filePath)
         {
             this.FileName = filePath;
-
-            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-            using (BinaryReader reader = new BinaryReader(fileStream))
+            if(File.Exists(filePath))
             {
-                this.Open(reader);
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(fileStream))
+                {
+                    this.Open(reader);
+                }
             }
         }
         public unsafe void Open(BinaryReader reader)
